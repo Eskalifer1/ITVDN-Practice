@@ -1,4 +1,4 @@
-const {series, parallel, watch} = require("gulp");
+const {series, parallel, watch, src, dest} = require("gulp");
 let browserSync = require('browser-sync').create();
 const pug = require("gulp-pug");
 
@@ -12,3 +12,12 @@ function watcher(cd){
     watch(`build/**/*`).on("change", browserSync.reload);
 }
 exports.watcher = watcher;
+
+function view(){
+    return src('source/templates/*.pug')
+    .pipe(pug({
+        pretty: true
+    }))
+    .pipe(dest('build'))
+}
+exports.view = view;
