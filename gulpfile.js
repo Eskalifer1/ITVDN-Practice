@@ -7,18 +7,16 @@ const rimraf = require("rimraf");
 const rename = require("gulp-rename");
 
 // Watch editions
-function watcher(){
+function watchBuild(){
     browserSync.init({
         server: {
-            port: 9800,
+            port: 9000,
             baseDir: "build"
         }
     });
     watch(`build/**/*.*`).on("change", browserSync.reload);
-    watch('source/templates/**/*.pug', {usePolling : true}, series(view));
-    watch('source/styles/**/*.scss', {usePolling : true}, series(scss2css));
 }
-exports.watcher = watcher;
+exports.watchBuild = watchBuild;
 
 // Compile pug into HTML
 function view(){
@@ -73,8 +71,14 @@ function copyFonts(){
 }
 exports.copyFonts = copyFonts;
 
+function watchSource(){
+    watch('source/templates/**/*.pug', {usePolling : true}, series(view));
+    watch('source/styles/**/*.scss', {usePolling : true}, series(scss2css));
+}
+exports.watchSource = watchSource;
+
 exports.default = series(
     series(clean),
     parallel(view, scss2css, sprite, copyFonts, copyImages),
-    series(watcher)
+    parallel(watchBuild, watchSource)
 )

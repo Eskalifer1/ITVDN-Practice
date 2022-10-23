@@ -1,23 +1,9 @@
 header.header  
-    .container
-        .header-top
-            .conatacts
-                a.contact(href ="#")
-                    i.fa.fa-mobile(aria-hidden = "true")
-                    span.contact__text 6337 3128
-                a.contact(href = "#")
-                    i.fa.fa-envelope.contact__icon.contact__icon--email(aria-hidden = "true")
-                    span.contact__text info@buisness.com
-                a.facebook-icon(href = "facebook.com")
-                    i.fa.fa-facebook(aria-hidden = "true")
-                    span.contact__text Facebook
+    .header-top
+        .container
+            include contacts.pug 
+    .container       
         .header-bottom
             .logo: img.logo__picture(src="images/logo.png" alt="picture")
-            nav.nav
-            -var items = ["Home", "About us", "Our Approch", "Our Work"]
-                each item in items
-                    if item === "Home"
-                        a.nav_link.nav_link_active(href = "#")=item
-                    else
-                        a.nav_link(href = "#")=item
-            a.button.header__buton.button-red(href = "#") Free Consultation
+            include nav.pug 
+            a.button.header__button.button--red(href = "#") Free Consultation
