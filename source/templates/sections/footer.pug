@@ -1,0 +1,19 @@
+-var linkItems = ['facebook-official', 'twitter', 'google-plus', 'linkedin'];
+-var linkURLs = ['facebook.com', 'twitter.com', "google.com", 'linkedin.com'];
+footer.footer
+    .footer__top 
+        .container
+            .footer__title Get in touch 
+            .footer__links
+                each item, key in linkItems
+                    a(href = "http://" + linkURLs[key] target = "_blank")
+                        i(class = "fa fa-" + item aria-hidden = 'true')
+                            span.visually-hidden=item 
+            .footer__text Lorem ipsum dolor sit amet consectetur adipisicing elit.
+
+            form(action = "#" method="post")
+                .footer__field: input.footer__input(type="email" placeholder="Email Adress")
+                button(type="submit").button Subscribe 
+
+    .footer__bottom 
+        .footer__copy Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maiores incidunt architecto autem in, provident accusantium voluptatibus voluptas sapiente illum, distinctio odit nam, optio mollitia praesentium?
