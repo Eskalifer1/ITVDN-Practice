@@ -12,14 +12,14 @@
     }
 
     &__title{
-        margin-bottom: 26px;
+        margin-bottom: 31px;
         font-size: 1.8125rem;
         color: #fff;
         font-family: $ff-main-bold;
     }
 
     &__links{
-        margin-bottom: 30px;
+        margin-bottom: 53px;
         color: #fff;
 
         .fa{
@@ -29,6 +29,9 @@
             border-radius: 3px;
             font-size: 1.5rem;
             color: #fff;
+            @media (max-width:345px) {
+                margin-left: 10px;
+            }
 
             &:hover{
                 border: 2px solid #de2b24;

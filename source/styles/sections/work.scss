@@ -3,6 +3,11 @@
     background-color: #de2b24;
     color: #fff;
 
+    @media (max-width:960px) {
+        padding-bottom: 30px;
+        padding-top: 30px;
+    }
+
     &__list{
         display: flex;
         flex-wrap: wrap;
@@ -23,10 +28,20 @@
             color:#fff;
             background: #f35e59;
 
+            @media (max-width:530px) {
+                padding: 0;
+                height: 200px;
+                width: 200px;
+            }
+
         &__name{
             position: relative;
             padding: 130px 40px 75px 40px;
             text-align: center;
+
+            @media (max-width:530px) {
+                padding-top: 100px;
+            }
 
             &::before{
                 @include sprite($work-item);
@@ -34,6 +49,9 @@
 
                 content: '';
                 top: 74px;
+                @media (max-width:530px) {
+                    top: 24px;
+                }
             }
         }
     }

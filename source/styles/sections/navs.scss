@@ -1,8 +1,12 @@
 .nav{
     display: inline-block;
-    padding-top: 7px;
     vertical-align: top;
-    margin-right: 15px;
+    margin-left: 165px;
+    font-size: 0.9rem;
+
+    @media (max-width:1031px) {
+        margin-left: 0px;
+    }
 
     &_link{
         display: inline-block;
@@ -13,6 +17,10 @@
         text-transform: capitalize;
         color: #424242;
         transition: .3s;
+
+        @media (max-width:529px) {
+            display: block;
+        }
 
         &:hover, &_active{
             color: #de2b24;
@@ -27,6 +35,9 @@
             border-radius: 50%;
             background: #424242;
             margin-left: 15px;
+            @media (max-width:529px) {
+                display: none;
+            }
         }
 
         &:last-child::after{
