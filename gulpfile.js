@@ -77,6 +77,8 @@ exports.copyFonts = copyFonts;
 //js
 function js(){
     return src([
+        "source/js/init.js",
+        "source/js/validation.js",
         "source/js/form.js",
         "source/js/main.js"
     ])
