@@ -5,6 +5,9 @@ let sass = require("gulp-sass")(require("sass"));
 const spritesmith = require('gulp.spritesmith');
 const rimraf = require("rimraf");
 const rename = require("gulp-rename");
+const uglify = require("gulp-uglify");
+const concat = require("gulp-concat");
+const sourcemaps = require("gulp-sourcemaps");
 
 // Watch editions
 function watchBuild(){
@@ -71,14 +74,31 @@ function copyFonts(){
 }
 exports.copyFonts = copyFonts;
 
+//js
+function js(){
+    return src([
+        "source/js/form.js",
+        "source/js/main.js"
+    ])
+    .pipe(sourcemaps.init())
+    .pipe(concat("main.min.js"))
+    .pipe(uglify())
+    .pipe(sourcemaps.write())
+    .pipe(dest("build/js"));
+}
+exports.js = js;
+
+//Watch Pug && SCSS&& JS
 function watchSource(){
     watch('source/templates/**/*.pug', {usePolling : true}, series(view));
     watch('source/styles/**/*.scss', {usePolling : true}, series(scss2css));
+    watch('source/js/**/*.js', {usePolling : true}, series(js));
 }
 exports.watchSource = watchSource;
 
+//Final Function
 exports.default = series(
     series(clean),
-    parallel(view, scss2css, sprite, copyFonts, copyImages),
+    parallel(view, scss2css, sprite, copyFonts, copyImages, js),
     parallel(watchBuild, watchSource)
 )
